@@ -1,8 +1,5 @@
 // ============================================================================
-// ARCHIVO DE EVENTOS - AÑADE, BORRA O MODIFICA EVENTOS AQUÍ
-// ============================================================================
-// Para agregar un evento nuevo, simplemente copia el bloque entre llaves {}
-// y pégalo abajo separado por una coma.
+// ARCHIVO DE EVENTOS
 // ============================================================================
 
 const misEventos = [

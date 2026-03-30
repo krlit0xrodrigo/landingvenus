@@ -41,6 +41,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 100px;
     font-size: 16px;
     /* Base size */
 }
@@ -435,67 +436,127 @@ img {
 /* ==========================================================================
    Proposals Section
    ========================================================================== */
-.grid-proposals {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+.list-proposals {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
     margin-top: 4rem;
 }
 
-.proposal-card {
+.proposal-row {
+    display: flex;
+    align-items: stretch;
     background: var(--color-white);
-    padding: 2.5rem 2rem;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     box-shadow: var(--shadow-soft);
-    transition: var(--transition);
-    border: 1px solid rgba(218, 37, 29, 0.05);
-    position: relative;
     overflow: hidden;
-}
-
-.proposal-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 4px;
-    background-color: var(--primary-red);
+    position: relative;
+    border: 1px solid rgba(218, 37, 29, 0.05);
     transition: var(--transition);
 }
 
-.proposal-card:hover {
-    transform: translateY(-10px);
+.proposal-row:hover {
+    transform: translateY(-5px);
     box-shadow: var(--shadow-medium);
 }
 
-.proposal-card:hover::before {
-    width: 100%;
-}
-
-.proposal-icon {
-    width: 60px;
-    height: 60px;
-    background-color: rgba(218, 37, 29, 0.1);
+.prop-num {
+    font-size: 5rem;
+    font-family: var(--font-heading);
+    font-weight: 900;
     color: var(--primary-red);
-    border-radius: 50%;
+    background: rgba(218, 37, 29, 0.05);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    transition: var(--transition);
+    padding: 0 2.5rem;
+    min-width: 100px;
 }
 
-.proposal-card:hover .proposal-icon {
-    background-color: var(--primary-red);
-    color: var(--color-white);
-    transform: scale(1.1);
+.prop-icon-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    color: var(--primary-red);
+    text-align: center;
+    border-right: 2px solid var(--color-light);
+    min-width: 160px;
 }
 
-.proposal-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
+.prop-icon-col i {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.prop-slogan {
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.prop-text-col {
+    padding: 2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.prop-text-col h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-dark-gray);
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.prop-text-col p {
+    margin: 0;
+    color: var(--color-text);
+}
+
+/* ==========================================================================
+   Horizontal Scroll (Testimonials & Events)
+   ========================================================================== */
+.horizontal-scroll {
+    display: flex !important;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 2rem;
+    padding-bottom: 1.5rem;
+    flex-wrap: nowrap;
+    scroll-snap-type: x mandatory;
+}
+
+.horizontal-scroll > * {
+    min-width: 320px;
+    max-width: 400px;
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+}
+
+/* Scrollbar estilizado en lugar de oculto, para mejor usabilidad si se requiere scroll */
+.horizontal-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+.horizontal-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+.horizontal-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+@media (min-width: 1024px) {
+    /* En PC de pantalla grande, mostramos todas las tarjetas centradas para que no quede nada oculto */
+    .horizontal-scroll {
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow-x: visible;
+        padding-bottom: 0;
+    }
 }
 
 /* ==========================================================================
@@ -1150,6 +1211,31 @@ img {
 
     .footer-logo {
         margin: 1rem auto;
+    }
+
+    /* Proposals Mobile Adjustments */
+    .proposal-row {
+        flex-direction: column;
+    }
+    
+    .prop-num {
+        display: none;
+    }
+    
+    .prop-icon-col {
+        border-right: none;
+        border-bottom: 2px solid var(--color-light);
+        padding: 1.5rem;
+    }
+    
+    .prop-text-col {
+        padding: 1.5rem;
+        text-align: center;
+    }
+    
+    /* Horizontal Scroll Mobile Adjustments */
+    .horizontal-scroll > * {
+        min-width: 85vw;
     }
 }
 
