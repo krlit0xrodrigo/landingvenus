@@ -1234,8 +1234,19 @@ img {
     }
     
     /* Horizontal Scroll Mobile Adjustments */
+    .horizontal-scroll {
+        margin-left: -5vw; /* Romper el margen del .container para overflow real a los bordes */
+        margin-right: -5vw;
+        padding-left: 5vw; /* Devolver el margen visualmente al contenido */
+        padding-right: 5vw;
+        padding-bottom: 1.5rem;
+    }
+    
     .horizontal-scroll > * {
+        width: 85vw;
         min-width: 85vw;
+        max-width: 85vw;
+        scroll-snap-align: center; /* Centrar al hacer swipe impide cortes asimétricos */
     }
 }
 
